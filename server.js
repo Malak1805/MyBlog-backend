@@ -18,6 +18,16 @@ app.use(cors())
 app.use(express.json())
 
 
+//routers
+const User = require('./routes/UserRouter')
+const Comment = require('./routes/CommentRouter')
+const Blog = require('./routes/BlogRouter')
+
+//use routes
+app.use('/comments', CommentRouter),
+app.use('/blogs', BlogRouter),
+app.use('/auth', UserRouter)
+
 //
 app.get('/', (req, res) => {
   res.send('Your App is Connected...')

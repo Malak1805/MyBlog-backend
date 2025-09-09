@@ -2,36 +2,46 @@ const router = require('express').Router()
 const Blog = require('../controllers/Blog')
 const middlewares = require('../middlewares')
 
-router.get('/', Blog.getAllPosts)
 
-router.get('/:id', Blog.getPostById)
 
+// Get all blogs
+router.get(
+  '/',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  Blog.getAllBlogs
+)
+
+// Get single blog
+router.get(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  Blog.getBlog
+)
+
+// Create a blog
 router.post(
   '/',
   middlewares.stripToken,
   middlewares.verifyToken,
-  Blog.createPost
+  Blog.postBlog
 )
 
-router.get(
-  '/:id/edit',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  Blog.editPost
-)
-
+// Update a blog
 router.put(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
-  Blog.updatePost
+  Blog.updateBlog
 )
 
+// Delete a blog
 router.delete(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
-  Blog.deletePost
+  Blog.deleteBlog
 )
 
 module.exports = router

@@ -19,9 +19,9 @@ app.use(express.json())
 
 
 //routers
-const User = require('./routes/UserRouter')
-const Comment = require('./routes/CommentRouter')
-const Blog = require('./routes/BlogRouter')
+const UserRouter = require('./routes/UserRouter')
+const CommentRouter = require('./routes/CommentRouter')
+const BlogRouter = require('./routes/BlogRouter')
 
 //use routes
 app.use('/comments', CommentRouter),
@@ -31,4 +31,9 @@ app.use('/auth', UserRouter)
 //
 app.get('/', (req, res) => {
   res.send('Your App is Connected...')
+})
+
+//listener
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`)
 })

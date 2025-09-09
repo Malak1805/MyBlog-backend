@@ -21,13 +21,6 @@ const userSchema = new mongoose.Schema(
     phone_number: {
       type: Number
     },
-    country: {
-      type: String,
-      required: true
-    },
-    avatar_url: {
-      type: String
-    },
     failedLoginAttempts: { type: Number, default: 0 },
     lockUntil: { type: Date }
   },

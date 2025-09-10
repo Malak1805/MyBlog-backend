@@ -23,12 +23,7 @@ router.get(
   middleWares.verifyToken,
   User.getProfileById
 )
-router.put(
-  '/profile',
-  middleWares.stripToken,
-  middleWares.verifyToken,
-  User.updateProfile
-)
+
 router.delete(
   '',
   middleWares.stripToken,

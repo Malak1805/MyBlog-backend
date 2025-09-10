@@ -5,11 +5,15 @@ const Comment = require('../models/Comment')
 // get a blog by id
 const getBlog = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id)
+    const blog = await Blog.findById(req.params.id).populate('userId', '_id first_name last_name').lean()
     if (!blog) return res.status(404).send({ msg: 'Blog not found' })
-    const comments = await Comment.find({ blogId: blog._id })
-    res.send(blog, comments)
+    const comments = await Comment.find({ blogId: blog._id }).populate('userId', 'first_name last_name')
+
+      const blogData = {...blog, userId: blog.userId?._id?.toString() || blog.userId?.toString() }
+
+    res.send({ blog, comments })
   } catch (error) {
+    console.error(error) 
     res.status(500).send({ msg: 'Error fetching blog' })
   }
 }

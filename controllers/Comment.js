@@ -32,6 +32,7 @@ const postComment = async (req, res) => {
         ...req.body,
         userId: id
       })
+      await comment.populate('userId', 'first_name last_name')
       return res.send(comment)
     } else {
       res.status(404).send({ msg: 'User not found' })

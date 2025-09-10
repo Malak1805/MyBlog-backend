@@ -17,7 +17,7 @@ exports.Register = async (req, res) => {
       password_digest: passwordDigest,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      phone_number: req.body.phone_number
+      
     }
 
     const newUser = await User.create(data)

@@ -7,8 +7,6 @@ const middlewares = require('../middlewares')
 // Get all blogs
 router.get(
   '/',
-  middlewares.stripToken,
-  middlewares.verifyToken,
   Blog.getAllBlogs
 )
 
